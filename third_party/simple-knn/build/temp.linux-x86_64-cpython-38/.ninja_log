@@ -1,0 +1,4 @@
+# ninja log v5
+1	8834	1745582556013563796	/home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-knn/build/temp.linux-x86_64-cpython-38/simple_knn.o	f4201aad6e7fb72c
+1	13432	1745582560610214716	/home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-knn/build/temp.linux-x86_64-cpython-38/ext.o	477acea55572afb9
+1	37332	1745582584509391952	/home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-knn/build/temp.linux-x86_64-cpython-38/spatial.o	4293826317d9f8c

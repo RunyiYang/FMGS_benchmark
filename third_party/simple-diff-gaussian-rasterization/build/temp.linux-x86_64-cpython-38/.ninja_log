@@ -1,0 +1,6 @@
+# ninja log v5
+4	14680	1745582651952251604	/home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-38/ext.o	b7c92241c3f8d0b1
+4	37538	1745582674808508811	/home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-38/rasterize_points.o	b919b1b02fc22130
+17	2448	1745582790962655083	/home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-38/cuda_rasterizer/backward.o	5819980cfd9c1c62
+17	2522	1745582791036649562	/home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-38/cuda_rasterizer/forward.o	b79202b5a9532048
+17	6535	1745582795047345877	/home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-38/cuda_rasterizer/rasterizer_impl.o	38b083a54694741c

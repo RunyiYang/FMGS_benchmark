@@ -1,0 +1,13 @@
+outputs/
+output/
+output_logs/
+
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pdb
+*.egg-info/
+*.egg
+*.whl
+*.log
