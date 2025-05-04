@@ -101,7 +101,8 @@ class Scene:
 
         if self.loaded_iter:
             scene_id = self.model_path.split("/")[-2]
-            self.gaussians.load_ply(os.path.join(self.model_path,
+            self.gaussians.load_ply(os.path.join(self.model_path, 
+                                                            #    "../point3d.ply"))
                                                            "../../../mcmc_3dgs/", scene_id, "ckpts/point_cloud_9000.ply"))
         else:
             self.gaussians.create_from_pcd(scene_info.point_cloud, self.cameras_extent)

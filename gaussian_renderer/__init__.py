@@ -151,6 +151,7 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
     if bvl_feature_precomp:
         # You may adjust these hyperparameters
         valid_gaussian_mask = (opacity > 0.25).squeeze(-1).detach() & (radii_rendered_image > fmap_render_radiithre).detach() # By default
+        valid_gaussian_mask = torch.ones_like(valid_gaussian_mask, dtype=torch.bool).detach() # TODO: Rocky, check this
         # while ((valid_gaussian_mask.sum() < 1000) and (radii_threshold>0)):
         #     print(f"=============== For radii_threshold {radii_threshold}, valid_gaussian_mask.sum() is less than 100! We decrease it by 2!"
         #           f" The valid portion is {valid_gaussian_mask.sum().item()}/{valid_gaussian_mask.shape[0]}!")
@@ -165,7 +166,7 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
 
         feature_dinomap_precomp = lerf_field_outputs[LERFFieldHeadNames.DINO]
         feature_clipmap_precomp = lerf_field_outputs[LERFFieldHeadNames.CLIP]
-        print(feature_clipmap_precomp.shape, feature_dinomap_precomp.shape, means3D.shape)
+
         simple_rasterizer = SimpleGaussianRasterizer(raster_settings=raster_settings)
         cov3D_precomp_ = cov3D_precomp_[valid_gaussian_mask].detach() if cov3D_precomp is not None else None
         rendered_featmap, rendered_featmap_ex, radii_rendered_featmap = simple_rasterizer(
@@ -187,4 +188,6 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
             "visibility_filter" : radii_rendered_image > 0,
             "radii": radii_rendered_image,
             "rendered_featmap": rendered_featmap,
-            "rendered_featmap_ex": rendered_featmap_ex,}
+            "rendered_featmap_ex": rendered_featmap_ex,
+            "feature_dinomap_precomp": feature_dinomap_precomp,
+            "feature_clipmap_precomp": feature_clipmap_precomp,}

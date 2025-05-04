@@ -37,27 +37,29 @@ for SCENE in "${SCENES[@]}"; do
   echo "=== Processing ${SCENE} ==="
 
   # 1) initial checkpoint-only run (was your first scannetpp call)
-  python train.py \
-    -s "$SCENE_DIR" \
-    --dataformat holicity \
-    --model_path "$MODEL_DIR" \
-    --checkpoint_iterations 7000 30000 \
-    --port 6034
+  # python train.py \
+  #   -s "$SCENE_DIR" \
+  #   --dataformat holicity \
+  #   --model_path "$MODEL_DIR" \
+  #   --checkpoint_iterations 7000 30000 \
+  #   --port 6034
 
-  # 2) full fine-tune / render-feature run (was your second scannetpp call)
-  python train.py \
-    -s "$SCENE_DIR" \
-    --dataformat holicity \
-    --model_path "$MODEL_DIR" \
-    --opt_vlrenderfeat_from 30000 \
-    --test_iterations 32000 32500 \
-    --save_iterations 32000 32500 \
-    --iterations 32500 \
-    --checkpoint_iterations 32000 32500 \
-    --start_checkpoint "${MODEL_DIR}/chkpnt30000.pth" \
-    --fmap_resolution 2 \
-    --lambda_clip 0.2 \
-    --fmap_lr 0.005 \
-    --fmap_render_radiithre 2 \
-    --port 6034
+  # # 2) full fine-tune / render-feature run (was your second scannetpp call)
+  # python train.py \
+  #   -s "$SCENE_DIR" \
+  #   --dataformat holicity \
+  #   --model_path "$MODEL_DIR" \
+  #   --opt_vlrenderfeat_from 30000 \
+  #   --test_iterations 32000 32500 \
+  #   --save_iterations 32000 32500 \
+  #   --iterations 32500 \
+  #   --checkpoint_iterations 32000 32500 \
+  #   --start_checkpoint "${MODEL_DIR}/chkpnt30000.pth" \
+  #   --fmap_resolution 2 \
+  #   --lambda_clip 0.2 \
+  #   --fmap_lr 0.005 \
+  #   --fmap_render_radiithre 2 \
+  #   --port 6034
+
+  python get_3d_features.py -s "$SCENE_DIR" --model_path "$MODEL_DIR" --dataformat holicity --runon_train
 done

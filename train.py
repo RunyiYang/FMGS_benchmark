@@ -43,7 +43,7 @@ from myutils.vis_lerf_utils import get_shown_feat_map, get_composited_relevancy_
 from myutils.lerf_optimizer_scedulers import ExponentialDecaySchedulerConfig,  ExponentialDecayScheduler
 
 def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoint_iterations, checkpoint, debug_from, opt_vlrenderfeat_from, args):
-    first_iter = 30000
+    first_iter = 0
     tb_writer = prepare_output_and_logger(dataset)
 
     lerf_model = None
@@ -66,11 +66,11 @@ def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoi
 
     # gaussians = GaussianModel(dataset.sh_degree, intermed_vlfeat_dim = lerf_model.intermed_vlfeat_dim) # This is for the Vl embedding attached gaussians.
     gaussians = GaussianModel(dataset.sh_degree)  # This is for vanilla gaussians.
-    scene = Scene(dataset, gaussians, dataformat=args.dataformat, load_iteration=30000)
+    scene = Scene(dataset, gaussians, dataformat=args.dataformat)
     gaussians.training_setup(opt)
     scene_id = scene.model_path.split("/")[-2]
-    gaussians.load_ply(os.path.join(scene.model_path,
-                                                           "../../../mcmc_3dgs/", scene_id, "ckpts/point_cloud_9000.ply"))
+    # gaussians.load_ply(os.path.join(scene.model_path, 
+                                                        #    "../../../mcmc_3dgs/", scene_id, "ckpts/point_cloud_9000.ply"))
     if checkpoint:
         print(f"Loading checkpoint from: {checkpoint}")
         loaded_statedict = torch.load(checkpoint)

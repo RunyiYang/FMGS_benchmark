@@ -900,16 +900,17 @@ def readGenericFrameInfo(path, white_background, depths, eval, extension=".jpg")
 
     nerf_normalization = getNerfppNorm(train_cam_infos)
 
-    ply_path = os.path.join(path, "points3d.ply")
+    ply_path = os.path.join(path, "point3d_fused.ply")
     bin_path = os.path.join(path, "../colmap/colmap/points3D.bin")
     txt_path = os.path.join(path, "../colmap/colmap/points3D.txt")
     if not os.path.exists(ply_path):
         print("Converting point3d.bin to .ply, will happen only the first time you open the scene.")
         try:
             xyz, rgb, _ = read_points3D_binary(bin_path)
+            storePly(ply_path, xyz, rgb)
         except:
-            xyz, rgb, _ = read_points3D_text(txt_path)
-        storePly(ply_path, xyz, rgb)
+            pass
+        
         
     if not os.path.exists(ply_path):
         # Since this data set has no colmap data, we start with random points

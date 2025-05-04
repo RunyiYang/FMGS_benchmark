@@ -268,7 +268,7 @@ class GaussianModel:
         self.max_radii2D = torch.zeros((self.get_xyz.shape[0]), device="cuda")
 
         self.active_sh_degree = self.max_sh_degree
-        print("-------------- in loadply(), self._opacity: ",  self._opacity.shape, self._opacity )
+        # print("-------------- in loadply(), self._opacity: ",  self._opacity.shape, self._opacity )
 
     def replace_tensor_to_optimizer(self, tensor, name):
         optimizable_tensors = {}
