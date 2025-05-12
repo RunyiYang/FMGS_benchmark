@@ -23,9 +23,9 @@ rule cuda_compile
 
 
 
-build /home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-knn/build/temp.linux-x86_64-cpython-38/ext.o: compile /home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-knn/ext.cpp
-build /home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-knn/build/temp.linux-x86_64-cpython-38/simple_knn.o: cuda_compile /home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-knn/simple_knn.cu
-build /home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-knn/build/temp.linux-x86_64-cpython-38/spatial.o: cuda_compile /home/runyi_yang/benchmark2025/foundation-model-embedded-3dgs/third_party/simple-knn/spatial.cu
+build /home/runyi_yang/benchmark2025/fmgs/third_party/simple-knn/build/temp.linux-x86_64-cpython-38/ext.o: compile /home/runyi_yang/benchmark2025/fmgs/third_party/simple-knn/ext.cpp
+build /home/runyi_yang/benchmark2025/fmgs/third_party/simple-knn/build/temp.linux-x86_64-cpython-38/simple_knn.o: cuda_compile /home/runyi_yang/benchmark2025/fmgs/third_party/simple-knn/simple_knn.cu
+build /home/runyi_yang/benchmark2025/fmgs/third_party/simple-knn/build/temp.linux-x86_64-cpython-38/spatial.o: cuda_compile /home/runyi_yang/benchmark2025/fmgs/third_party/simple-knn/spatial.cu
 
 
 

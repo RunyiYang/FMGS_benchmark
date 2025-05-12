@@ -196,7 +196,6 @@ def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoi
             # print("viewpoint_indx, gt_image.shape: ", viewpoint_indx, gt_image.shape)
 
             # Extract the featrue map via fundation models
-            # import pdb; pdb.set_trace()
             dino_feat_map, clip_feat_map = lerf_featmap_manger(viewpoint_indx) # (C-384, Hs0, Ws0) tmp (384, 62, 84) # (C-512, Hs0, Ws0), tmp (512, 24, 32)
             # TODO: Visualize the generated hybrid feat map, and match it with a heuristic text prompt
             # # print("Shape of dino_feat_map, clip_feat_map: ", dino_feat_map.shape, clip_feat_map.shape)

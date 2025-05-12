@@ -560,7 +560,7 @@ def readCamerasFromTransforms_nerfstudio(path, transformsfile, depths_folder, wh
         FovX = fovx
         frames = contents["frames"]
         for idx, frame in enumerate(tqdm(frames)):
-            image_path = path.replace("nerfstudio", "undistorted_images/undistorted_images")
+            image_path = path.replace("nerfstudio", "undistorted_images")
             cam_name = frame["file_path"]
 
             # NeRF 'transform_matrix' is a camera-to-world transform
@@ -714,16 +714,16 @@ def readScanNetInfo(path, white_background, depths, eval, extension=".JPG"):
     nerf_normalization = getNerfppNorm(train_cam_infos)
     
     ply_path = os.path.join(path, "point3d.ply")
-    print("ply_path: ", ply_path)
     bin_path = os.path.join(path, "../colmap/colmap/points3D.bin")
     txt_path = os.path.join(path, "../colmap/colmap/points3D.txt")
     if not os.path.exists(ply_path):
         print("Converting point3d.bin to .ply, will happen only the first time you open the scene.")
         try:
             xyz, rgb, _ = read_points3D_binary(bin_path)
+            storePly(ply_path, xyz, rgb)
         except:
-            xyz, rgb, _ = read_points3D_text(txt_path)
-        storePly(ply_path, xyz, rgb)
+            pass
+        
         
     if not os.path.exists(ply_path):
         # Since this data set has no colmap data, we start with random points
@@ -740,7 +740,6 @@ def readScanNetInfo(path, white_background, depths, eval, extension=".JPG"):
         pcd = fetchPly(ply_path)
     except:
         pcd = None
-
     scene_info = SceneInfo(point_cloud=pcd,
                            train_cameras=train_cam_infos,
                            test_cameras=test_cam_infos,
@@ -752,7 +751,7 @@ def readScanNetppInfo(path, white_background, depths, eval, extension=".JPG"):
 
     depths_folder=os.path.join(path, depths) if depths != "" else ""
     print("Reading Training Transforms")
-    train_cam_infos = readCamerasFromTransforms_nerfstudio(path, os.path.join(path, "nerfstudio/lang_feat_selected_imgs.json"), depths_folder, white_background, False, extension)
+    train_cam_infos = readCamerasFromTransforms_nerfstudio(path, os.path.join(path, "lang_feat_selected_imgs.json"), depths_folder, white_background, False, extension)
     # print("Reading Test Transforms")
     # test_cam_infos = readCamerasFromTransforms_nerfstudio(path, os.path.join(path, "nerfstudio/transforms_undistorted.json"),  depths_folder, white_background, True, extension)
     
@@ -764,13 +763,15 @@ def readScanNetppInfo(path, white_background, depths, eval, extension=".JPG"):
     ply_path = os.path.join(path, "points3D.ply")
     bin_path = os.path.join(path, "../colmap/colmap/points3D.bin")
     txt_path = os.path.join(path, "../colmap/colmap/points3D.txt")
+
     if not os.path.exists(ply_path):
         print("Converting point3d.bin to .ply, will happen only the first time you open the scene.")
         try:
             xyz, rgb, _ = read_points3D_binary(bin_path)
+            storePly(ply_path, xyz, rgb)
         except:
-            xyz, rgb, _ = read_points3D_text(txt_path)
-        storePly(ply_path, xyz, rgb)
+            pass
+        
         
     if not os.path.exists(ply_path):
         # Since this data set has no colmap data, we start with random points

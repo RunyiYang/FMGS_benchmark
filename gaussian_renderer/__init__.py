@@ -188,6 +188,6 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
             "visibility_filter" : radii_rendered_image > 0,
             "radii": radii_rendered_image,
             "rendered_featmap": rendered_featmap,
-            "rendered_featmap_ex": rendered_featmap_ex,
-            "feature_dinomap_precomp": feature_dinomap_precomp,
-            "feature_clipmap_precomp": feature_clipmap_precomp,}
+            "rendered_featmap_ex": rendered_featmap_ex,}
+            # "feature_dinomap_precomp": feature_dinomap_precomp,
+            # "feature_clipmap_precomp": feature_clipmap_precomp,}

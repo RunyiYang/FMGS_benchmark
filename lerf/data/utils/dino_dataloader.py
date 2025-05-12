@@ -31,7 +31,7 @@ class DinoDataloader(FeatureDataloader):
     # dino_model_type = "dinov2_vitb14" # "dinov2_vitb14", "dinov2_vitb14_reg"
     # dino_stride = 14 # 14, 7
 
-    dino_load_size = 500 # 500 -> 720 # This will be the smaller one of the rescaled height, or width
+    dino_load_size = 1000 # 500 -> 720 # This will be the smaller one of the rescaled height, or width
     dino_layer = 11
     dino_facet = "key"
     dino_bin = False
